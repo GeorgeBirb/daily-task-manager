@@ -1,0 +1,3 @@
+com\example\primefaces\bean\TaskCategoryBean.class
+models\TaskCategory.class
+Services\TaskCategoryService.class
