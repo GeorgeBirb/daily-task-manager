@@ -6,18 +6,25 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
+    <title>Task Categories</title>
 </h:head>
 <h:body>
     <h:form id="mainForm">
+        <p:growl id="messages" showDetail="true" life="3000" />
+
         <p:dataTable id="taskCategories"
                      var="taskCategory"
                      value="#{taskCategoryBean.taskCategoryList}"
-                     rowKey="#{taskCategory.id}">
+                     rowKey="#{taskCategory.id}"
+                     paginator="true"
+                     rows="10"
+                     emptyMessage="No task categories found">
+
             <f:facet name="header">
-                Total Task Categories : #{taskCategoryBean.taskCategoryList.size()}
+                <h:outputText value="Task Categories" style="font-size: 20px; font-weight: bold;"/>
             </f:facet>
 
-            <p:column headerText="id">
+            <p:column headerText="ID">
                 <h:outputText value="#{taskCategory.id}"/>
             </p:column>
             <p:column headerText="Name">
@@ -26,7 +33,17 @@
             <p:column headerText="Description">
                 <h:outputText value="#{taskCategory.description}"/>
             </p:column>
+
         </p:dataTable>
+
+        <p:commandButton value="Export to .docx"
+                         ajax="false"
+                         actionListener="#{taskCategoryBean.exportToDocx}"/>
+
+        <p:commandButton value="Export to .docx 2"
+                         ajax="false"
+                         actionListener="#{taskCategoryBean.exportToDocx2}"/>
+
     </h:form>
 </h:body>
 </html>
